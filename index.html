@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui" />
+    <title>TappedIn</title>
+    <link href="./Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="./Content/toastr.min.css" rel="stylesheet" />
+    <link href="./Content/tappedin.css" rel="stylesheet" />
+    <link href="//fonts.googleapis.com/css?family=Arimo:400italic,400,700italic,700" rel="stylesheet">
+    <link href="./Content/font-awesome.min.css" rel="stylesheet" />
+
+    <meta name="description" content="Find beer at venues. Subscribe to beers. Sort and filter beers by type. View menu images taken by users!" />
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@TappedInApp">
+    <meta name="twitter:creator" content="@TappedInApp">
+    <meta name="twitter:title" content="TappedIn">
+    <meta name="twitter:description" content="Find beer at venues. Subscribe to beers. Sort and filter beers by type. View menu images taken by users!">
+    <meta name="twitter:image:src" content="http://tappedin.beer/content/img/tappedin.jpg">
+
+    <meta property="og:title" content="TappedIn" />
+    <meta property="og:url" content="http://tappedin.beer/" />
+    <meta property="og:image" content="http://tappedin.beer/content/img/tappedin.jpg" />
+    <meta property="og:description" content="Find beer at venues. Subscribe to beers. Sort and filter beers by type. View menu images taken by users!" />
+
+    <meta name="theme-color" content="#26265E">
+
+    <link rel="icon" href="./Content/img/icon_large.png">
+
+</head>
+
+<body>
+
+    <div id="header">
+        <div class="container text-center">
+            <h1>TappedIn</h1>
+            <p id="tagline" class="text-muted">socially curated beer menus</p>
+
+            <div class="application-stores">
+
+                <a href="//appsto.re/us/fInu3.i"><img src="./Content/img/app-store2.jpg" /></a> <br />
+
+                <a href="//play.google.com/store/apps/details?id=com.slaptap.tappedin"><img id="google-play" src="./Content/img/googleplay.png" /></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="screenshots" class="container text-center">
+
+        <img src="./Content/img/tappedin_2.0.png" alt="TappedIn" />
+    </div>
+
+    <p class="text-center text-muted">
+        Don't see your favorite beer venue? <a data-toggle="modal" href="#venue-request" class=""><br>Click here to request listing!</a>
+    </p>
+
+
+    <div id="map-container-overlay" onclick="style.pointerEvents='none'"></div>
+    <div id="map-container"></div>
+
+    <div id="stats-container" class="container">
+
+
+        <ul class="nav nav-tabs">
+
+            <li class="active">
+                <a href="#top-subscriptions" data-toggle="tab">Beer Subscriptions</a>
+            </li>
+            <li>
+                <a href="#top-seen-beers" data-toggle="tab">Top Beers</a>
+            </li>
+            <li>
+                <a href="#top-venuebeer-count" data-toggle="tab">Top Venues</a>
+            </li>
+            <li>
+                <a href="#venue-count-by-state" data-toggle="tab">Most Venues By State</a>
+            </li>
+        </ul>
+
+
+        <div class="tab-content">
+
+            <div role="tabpanel" class="tab-pane fade in active beer-tab-stat-wrap" id="top-subscriptions">
+
+                <table id="top10-subscribed-tbl" class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>
+                                Brewery
+                            </th>
+                            <th>
+                                Beer
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+
+                </table>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade beer-tab-stat-wrap" id="top-seen-beers">
+                <div class="text-muted text-right">
+                    *past 6 days
+                </div>
+                <table id="top10-seen-tbl" class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>
+                                Brewery
+                            </th>
+                            <th>
+                                Beer
+                            </th>
+                            <th>Available Venues*</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+
+                </table>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade beer-tab-stat-wrap" id="top-venuebeer-count">
+                <div class="text-muted text-right">
+                    *past 6 days
+                </div>
+                <table id="top10-venuebeer-count-tbl" class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>
+                                Venue
+                            </th>
+                            <th>
+                                Location
+                            </th>
+                            <th>Seen Beers*</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+
+                </table>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade beer-tab-stat-wrap" id="venue-count-by-state">
+
+                <table id="venue-count-by-state-tbl" class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>State</th>
+                            <th>
+                                Venue Count
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div id="footer">
+        <div class="container text-center">
+
+
+            <div class="social">
+                <a href="//twitter.com/TappedInApp"><i class="fa fa-twitter"></i></a>
+                <a href="//facebook.com/TappedInApp"><i class="fa fa-facebook"></i></a>
+            </div>
+
+
+            <div class="text-muted creators">
+                Handcrafted with love
+                over good beer<br />
+                <a href="//twitter.com/andrew_herrick">@andrew_herrick</a> & <a href="//twitter.com/devkitt">@devkitt</a>
+            </div>
+            <div class="text-muted">
+
+                Support and feedback <br />
+                <a href="mailto:hi@tappedin.beer">hi@tappedin.beer</a>
+            </div>
+            <div id="pbu">
+                <a href="//untappd.com"><img src="./Content/img/pbu_320_black.png" /></a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="venue-request" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="venue-req-form" class="form-horizontal">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">TappedIn Venue Request</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group row">
+                            <label for="venue-req-name" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="venue-req-name" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="venue-req-city" class="col-sm-2 control-label">City</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="venue-req-city" placeholder="City">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="venue-req-state" class="col-sm-2 control-label">State</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="venue-req-state" placeholder="State">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="venue-req-postalcode" class="col-sm-2 control-label">Postal</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="venue-req-postalcode" placeholder="Postal">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="submit-venue-req">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="./Scripts/jquery-1.9.0.min.js"></script>
+    <script src="./Scripts/bootstrap.min.js"></script>
+    <script src="./Scripts/toastr.js"></script>
+    <script src="//maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="./Scripts/utils.js?v=1235"></script>
+    <script src="./Scripts/app.js?v=1235"></script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-54831542-2', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+</html>

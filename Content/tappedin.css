@@ -1,0 +1,188 @@
+﻿html, body {
+    background-color: #F8F8F8;
+    font-family: 'Arimo', sans-serif;
+}
+
+body {
+    border-top: 10px solid #26265E;
+}
+
+a {
+    color: #26265E;
+}
+
+#screenshots {
+    padding-bottom: 30px;
+}
+
+    #screenshots img {
+        width: 320px;
+    }
+
+@media (max-width: 320px) {
+
+    #screenshots img {
+        width: 270px;
+    }
+}
+
+.social {
+    padding-bottom: 20px;
+}
+
+
+    .social i {
+        font-size: 28px;
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+        .social i:hover {
+            color: #595991;
+        }
+
+
+.container {
+    padding-top: 30px;
+}
+
+#header {
+    background-color: #fff;
+    padding-bottom: 30px;
+    padding-top: 0;
+}
+
+    #header h1 {
+        margin-top: 0;
+        font-weight: bold;
+    }
+
+
+
+.app-store {
+    border-radius: 5px;
+    background-color: #26265E;
+    color: #fff;
+    display: inline-block;
+    padding: 12px;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+    .app-store i {
+        font-size: 28px;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+
+    .app-store:hover {
+        background-color: #595991;
+        text-decoration: none;
+        color: #fff;
+    }
+
+#footer {
+    background-color: #fff;
+    padding-bottom: 30px;
+}
+
+    #footer i {
+        color: #26265E;
+    }
+
+.beta-submit-wrap {
+    margin: 0 auto;
+}
+
+@media (min-width: 500px) {
+
+    .beta-submit-wrap {
+        width: 360px;
+    }
+}
+
+
+#beta-email-input {
+    font-size: 16px;
+    height: 46px;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+
+.creators {
+    padding-bottom: 10px;
+}
+
+#pbu {
+    padding-top: 20px;
+    width: 160px;
+    margin: 0 auto;
+}
+
+    #pbu img {
+        width: 160px;
+    }
+
+#map-container {
+    height: 240px;
+}
+
+#map-container-overlay {
+    background: transparent;
+    position: relative;
+    width: 100%;
+    height: 240px; /* your iframe height */
+    top: 240px; /* your iframe height */
+    margin-top: -240px; /* your iframe height */
+    z-index: 100;
+}
+
+.beer-tab-stat-wrap {
+    padding: 15px;
+    background-color: #fff;
+}
+
+
+#stats-container {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 60px;
+}
+
+
+.application-stores {
+
+    margin-top: 24px;
+}
+
+.application-stores img {
+    width: 220px;
+}
+
+#google-play {
+    position: relative;
+    left: -2px;
+    top: 2px;
+    width: 216px;
+}
+
+}
+
+/*@media (max-width: 320px) {
+
+    .modal {
+        position: absolute;
+        overflow: visible;
+        max-height: 480px;
+    }
+
+    .modal-open {
+        overflow: visible;
+    }
+}*/
+
+
+
