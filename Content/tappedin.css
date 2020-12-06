@@ -16,7 +16,7 @@ a {
 }
 
     #screenshots img {
-        width: 400px;
+        width: 320px;
     }
 
 @media (max-width: 320px) {
