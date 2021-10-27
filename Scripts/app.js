@@ -21,13 +21,13 @@ var map = new google.maps.Map(document.getElementById('map-container')),
     infowindow = new google.maps.InfoWindow(),
     marker;
 
-$.get('https://tappedinapi.azurewebsites.net/tappedin/getvenues', function (venues) {
+$.get('https://tappedin.azurewebsites.net/tappedin/GetVenuesForMap', function (venues) {
 
     var bounds = new google.maps.LatLngBounds();
     $.each(venues, function (i, venue) {
 
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng(venue.Latitude, venue.Longitude),
+            position: new google.maps.LatLng(venue.latitude, venue.longitude),
             map: map
         });
         bounds.extend(marker.getPosition());
@@ -35,7 +35,7 @@ $.get('https://tappedinapi.azurewebsites.net/tappedin/getvenues', function (venu
         google.maps.event.addListener(marker, 'click', (function (marker) {
             return function () {
 
-                infowindow.setContent('<div style="white-space: nowrap;">' + venue.Name + '</div>' + '<div style="white-space: nowrap;">' + venue.City + ', ' + venue.State + '</div>');
+                infowindow.setContent('<div style="white-space: nowrap;">' + venue.name + '</div>' + '<div style="white-space: nowrap;">' + venue.city + ', ' + venue.state + '</div>');
                 infowindow.open(map, marker);
             }
         })(marker));
@@ -46,36 +46,23 @@ $.get('https://tappedinapi.azurewebsites.net/tappedin/getvenues', function (venu
 
 
 
-// top 10 subscriptions
-
-var top10subBody = '';
-$.get('https://tappedinapi.azurewebsites.net/tappedin/GetSubscribedBeersTop10', function (beers) {
-
-    $.each(beers, function (i, beer) {
-
-        top10subBody += '<tr><td>' + (i + 1) + '</td><td>' + beer.Brewery + '</td><td>' + beer.Beer + '</td></tr>';
-    });
-
-    $('#top10-subscribed-tbl tbody').html(top10subBody);
-});
-
 var top10SeenBody = '';
-$.get('https://tappedinapi.azurewebsites.net/tappedin/GetTopSeenBeersCache', function (beers) {
+$.get('https://tappedin.azurewebsites.net/tappedin/GetTopBeerCounts?takeCount=10', function (beers) {
 
     $.each(beers, function (i, b) {
 
-        top10SeenBody += '<tr><td>' + (i + 1) + '</td><td>' + b.Beer.BreweryName + '</td><td>' + b.Beer.Name + '</td><td>' + b.Count + '</td></tr>';
+        top10SeenBody += '<tr><td>' + (i + 1) + '</td><td>' + b.breweryName + '</td><td>' + b.name + '</td><td>' + b.Count + '</td></tr>';
     });
 
     $('#top10-seen-tbl tbody').html(top10SeenBody);
 });
 
 var top10VenueBeerCountBody = '';
-$.get('https://tappedinapi.azurewebsites.net/tappedin/GetTopVenueBeerCountsCache', function (vbcs) {
+$.get('https://tappedin.azurewebsites.net/tappedin/GetTopVenueBeerCounts?takeCount=10', function (vbcs) {
 
     $.each(vbcs, function (i, vbc) {
 
-        top10VenueBeerCountBody += '<tr><td>' + (i + 1) + '</td><td>' + vbc.Venue.Name + '</td><td>' + vbc.Venue.City + ', ' + vbc.Venue.State + '</td><td>' + vbc.BeerCount + '</td></tr>';
+        top10VenueBeerCountBody += '<tr><td>' + (i + 1) + '</td><td>' + vbc.name + '</td><td>' + vbc.city + ', ' + vbc.state + '</td><td>' + vbc.beerCount + '</td></tr>';
     });
 
     $('#top10-venuebeer-count-tbl tbody').html(top10VenueBeerCountBody);
@@ -83,12 +70,12 @@ $.get('https://tappedinapi.azurewebsites.net/tappedin/GetTopVenueBeerCountsCache
 
 
 var venueCountByState = '';
-$.get('https://tappedinapi.azurewebsites.net/tappedin/GetVenueCountByState', function (vbcs) {
+$.get('https://tappedin.azurewebsites.net/tappedin/GetVenueCountByState', function (vbcs) {
 
     $.each(vbcs.slice(0, 10), function (i, vbc) {
 
         var stateName = '';
-        var state = getStateFromAbbreviation(vbc.State)[0];
+        var state = getStateFromAbbreviation(vbc.state)[0];
         if (state)
         {
             stateName = state.name;
@@ -98,7 +85,7 @@ $.get('https://tappedinapi.azurewebsites.net/tappedin/GetVenueCountByState', fun
             stateName = vbc.State;
         }
 
-        venueCountByState += '<tr><td>' + (i + 1) + '</td><td>' + stateName + '</td><td>' + vbc.Count + '</td></tr>';
+        venueCountByState += '<tr><td>' + (i + 1) + '</td><td>' + stateName + '</td><td>' + vbc.count + '</td></tr>';
     });
 
     $('#venue-count-by-state-tbl tbody').html(venueCountByState);
@@ -129,16 +116,18 @@ $('#venue-req-form').on('submit', function (e) {
             return;
         }
 
-        $.post('//tappedinapi.azurewebsites.net/tappedin/savevenuerequest', parms).done(function (resp) {
+        $.ajax({
+            url: "https://tappedin.azurewebsites.net/tappedin/savevenuerequest",
+            type: "POST",
+            data: JSON.stringify(parms),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function () {
 
-            submitVenueReq = false;
-            $('#venue-request').modal('hide');
-            alert('Success! Thank you for your request!');
-        })
-        .fail(function () {
-
-            submitVenueReq = false;
-            alert('An error has occurred. Please ensure your venue data is correct.');
+                submitVenueReq = false;
+                $('#venue-request').modal('hide');
+                alert('Success! Thank you for your request!');
+            }
         });
     }
 });
