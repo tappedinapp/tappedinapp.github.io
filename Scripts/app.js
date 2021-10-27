@@ -51,7 +51,7 @@ $.get('https://tappedin.azurewebsites.net/tappedin/GetTopBeerCounts?takeCount=10
 
     $.each(beers, function (i, b) {
 
-        top10SeenBody += '<tr><td>' + (i + 1) + '</td><td>' + b.breweryName + '</td><td>' + b.name + '</td><td>' + b.Count + '</td></tr>';
+        top10SeenBody += '<tr><td>' + (i + 1) + '</td><td>' + b.breweryName + '</td><td>' + b.name + '</td><td>' + b.count + '</td></tr>';
     });
 
     $('#top10-seen-tbl tbody').html(top10SeenBody);
@@ -117,7 +117,7 @@ $('#venue-req-form').on('submit', function (e) {
         }
 
         $.ajax({
-            url: "https://tappedin.azurewebsites.net/tappedin/savevenuerequest",
+            url: "https://tappedin.azurewebsites.net/tappedin/savevenuerequest?fromWeb=true",
             type: "POST",
             data: JSON.stringify(parms),
             contentType: "application/json; charset=utf-8",
